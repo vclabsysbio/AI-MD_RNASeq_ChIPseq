@@ -5,7 +5,7 @@ CPU-GPU project (2022)
 This repository contains ...
 
 ## Data
-Data used in this analysis was downloaded from ... under the accession number SRRXXX
+Data used in this analysis was downloaded from ... under the accession number SRR10989467
 
 ## Packages used in this analysis
 
