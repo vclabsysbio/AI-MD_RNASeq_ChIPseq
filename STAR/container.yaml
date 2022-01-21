@@ -1,0 +1,8 @@
+docker: tipsarin/star2.7.2a
+url: https://hub.docker.com/r/tipsarin/star2.7.2a
+maintainer: 'KoHaku55'
+description: Spliced Transcripts Alignment to a Reference.
+latest:
+  star2.7.2a: sha256:1f333e245e359eb7e9d73e798423a346be50cb620c1a8e4784366fae2e021a67
+aliases:
+  STAR: /usr/local/bin/STAR
