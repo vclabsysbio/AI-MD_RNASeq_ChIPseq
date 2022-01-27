@@ -1,6 +1,8 @@
+# Processing in : CPU server 10.90.202.246
+# Analysis : RNA-seq pipeline
+# SRR accession : SRR10989467
 
-################################ CPU 246 sever ##########################
-### RNA-seq pipeline
+#############################################################################
 #Fastqc
 fastqc SRR10989467_1.fastq 
 fastqc SRR10989467_2.fastq 
