@@ -1,6 +1,8 @@
+# Processing in : HPC (Mahidol University)
+# Analysis : RNA-seq pipeline
+# SRR accession : SRR10989467
 
-
-####  AI-MD ### HPC MU
+#############################################################################
 ### 1 ###
 #install shpc
 git clone https://github.com/singularityhub/singularity-hpc
