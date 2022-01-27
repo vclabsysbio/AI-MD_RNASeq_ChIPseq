@@ -1,0 +1,86 @@
+
+
+####  AI-MD ### HPC MU
+### 1 ###
+#install shpc
+git clone https://github.com/singularityhub/singularity-hpc
+shpc
+shpc show  ## show all registry you can download and install
+shpc list # show registry you have already downloaded 
+
+### 2 ###
+####install tools for RNA-seq analysis###
+##Trimmomatic
+#Ref : https://singularityhub.github.io/singularity-hpc/r/quay.io-biocontainers-trimmomatic/
+shpc install quay.io/biocontainers/trimmomatic
+
+#Fastqc
+#Ref : https://singularityhub.github.io/singularity-hpc/r/quay.io-biocontainers-fastqc/
+shpc install quay.io/biocontainers/fastqc
+
+#Hisat2
+#Ref https://singularityhub.github.io/singularity-hpc/r/ghcr.io-autamus-hisat2/
+shpc install ghcr.io/autamus/hisat2  #require reference .ht
+
+#Samtools
+#Ref https://singularityhub.github.io/singularity-hpc/r/biocontainers-samtools/
+shpc install biocontainers/samtools
+
+#Picard 
+#Ref https://singularityhub.github.io/singularity-hpc/r/biocontainers-picard/ 
+shpc install biocontainers/picard
+
+#Stringtie 
+#Ref https://singularityhub.github.io/singularity-hpc/r/ghcr.io-autamus-stringtie/
+shpc install ghcr.io/autamus/stringtie # require reference .gtf
+
+#STAR
+#Ref https://singularityhub.github.io/singularity-hpc/r/quay.io-biocontainers-star/
+shpc install quay.io/biocontainers/star
+
+### 3 ###
+### export module directory ###
+module use ~/singularity-hpc/modules
+#module spider ## for module detial 
+
+
+### 4 ###
+### Load modules ###
+module load quay.io/biocontainers/trimmomatic/0.39--0/module
+module load quay.io/biocontainers/fastqc/0.11.9--0/module
+module load ghcr.io/autamus/hisat2/2.2.0/module
+module load biocontainers/samtools/v1.9-4-deb_cv1/module
+module load biocontainers/picard/v1.139_cv3/module
+module load ghcr.io/autamus/stringtie/2.1.7/module
+module load quay.io/biocontainers/star/2.7.9a--h9ee0642_0/module
+
+### RNA-seq analysis pipeline ###
+#Fastqc xxxx.fastq
+fastqc SRR10989467_1.fastq 
+fastqc SRR10989467_2.fastq 
+fastqc SRR10989467_1_trimmo_paired.fastq
+fastqc SRR10989467_2_trimmo_paired.fastq
+
+#Trimmomatic PE [-version] [-threads <threads>] [-phred33|-phred64] [-trimlog <trimLogFile>] [-basein <inputBase> | <inputFile1> <inputFile2>] [-baseout <outputBase> | <outputFile1P> <outputFile1U> <outputFile2P> <outputFile2U>] <trimmer1>...
+trimmomatic PE -threads 6 -phred33 -trimlog trimmolog1.txt SRR10989467_1.fastq SRR10989467_2.fastq SRR10989467_1_trimmo_paired.fastq SRR10989467_1_trimmo_unpaired.fastq SRR10989467_2_trimmo_paired.fastq SRR10989467_2_trimmo_unpaired.fastq ILLUMINACLIP:/home/peerapat.kha/adapters/TruSeq3-PE-2.fa:2:30:10
+
+#hisat2 -p threads -q --no-mixed --mp-discordant --dta -x directory of ref index -1 #1mates file -2 #2mates file -S output.sam
+hisat2 -p 6 -q --no-mixed --no-discordant --dta -x /home/peerapat.kha/hg38_tran/genome_tran -1 /home/peerapat.kha/Fastq/SRR10989467_1.fastq -2 /home/peerapat.kha/Fastq/SRR10989467_2.fastq -S SRR1089467.sam
+
+hisat2 -p 6 -q --no-mixed --no-discordant --dta -x /home/peerapat.kha/hg38_tran/genome_tran -1 /home/peerapat.kha/Fastq/SRR10989467_1_trimmo_paired.fastq -2 /home/peerapat.kha/Fastq/SRR10989467_2_trimmo_paired.fastq -S SRR1089467.sam
+
+#Samtools convert and sort
+samtools sort -o SRR10989467_sorted.bam SRR1089467.sam
+
+#Picard remove duplicate 
+picard MarkDuplicates INPUT=SRR10989467_sorted.bam OUTPUT=SRR10989467_sorted_rmdup.bam METRICS_FILE=dup.txt VALIDATION_STRINGENCY=LENIENT REMOVE_DUPLICATES=true > markdup_stderr_renamed_hisat_dta_nomixed.txt
+
+#FLAGstat
+samtools flagstat SRR10989467_sorted_rmdup.bam
+
+#Indexing
+samtools index SRR10989467_sorted_rmdup.bam
+
+#Stringtie -G reference annotation -e (estimate of reference transcript) -B (outputforBallgown) -A (file gene abundance) -o (output.gtf) .bam
+stringtie SRR10989467_sorted_rmdup.bam -G /home/peerapat.kha/hg38_tran/hg38_ucsc.annotated.gtf -p 6 -e -B -A SRR10989467_sorted_rmdup_bam.txt -o SRR10989467_sorted_rmdup.gtf
+
