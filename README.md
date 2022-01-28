@@ -7,6 +7,10 @@ This repository contains scripts used for RNA-sequencing and ChIP-sequencing ana
 ## Data
 Data used in this analysis was downloaded from the Sequence Read Archive (SRA) under the accession number **SRR10989467** for RNA-seq analysis and **SRR__** for ChIP-seq analysis
 
+## Information of CPU
+####
+
+
 ## Packages used in this analysis
 
 #### R package
