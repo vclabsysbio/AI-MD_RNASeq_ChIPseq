@@ -7,7 +7,6 @@ Steps/files created | Programs/tools | real | user | sys | overall<br>alignment 
 fastq | Trimmomatic | 4m54.646s | 4m6.433s | 2m25.941s
 SRR10989467.1.fastq|	Fastqc|	0m21.735s|	0m22.806s|	0m1.355s
 SRR10989467.2.fastq|	Fastqc|	0m21.272s|	0m21.897s|	0m1.370s
-SRR10989467|	hisat2			
 SRR10989467_1_trimmo_paired.fastq|	Fastqc|	0m20.770s|	0m21.525s|	0m1.399s
 SRR10989467_2_trimmo_paired.fastq|	Fastqc|	0m20.797s|	0m21.979s|	0m1.354s
 SRR10989467 trim|	hisat2|	5m37.831s|	32m39.923s|	0m32.199s | 77.30%
@@ -27,7 +26,6 @@ Steps/files created | Programs/tools | real | user | sys | overall<br>alignment 
 fastq|	trimmomatic 	|12m40.120s	|6m31.020s	|11m4.076s
 SRR10989467.1.fastq	|Fastqc	|0m41.084s	|0m41.764s	|0m2.824s
 SRR10989467.2.fastq	|Fastqc	|0m40.972s		| |0m2.364s
-SRR10989467|	hisat2			
 SRR10989467_1_trimmo_paired.fastq	|Fastqc|	0m40.318s	|0m41.668s	|0m1.888s
 SRR10989467_2_trimmo_paired.fastq|	Fastqc	|0m38.851s	|0m39.700s	|0m1.720s
 SRR10989467	|hisat2|	9m53.742s	|52m30.204s|	5m47.388s | 77.30%
@@ -37,21 +35,3 @@ SRR10989467_sorted_rmdup.bam	|samtools flagstat	|0m33.883s	|0m30.672s	|0m3.208s
 SRR10989467_sorted_rmdup.bam	|samtools index	|0m26.817s	|0m26.232s	|0m0.580s
 SRR10989467_sorted_rmdup.bam	|stringtie	|14m19.681s	|14m17.672s	|0m28.544s
 
-###### Processing : CPU 10, node 1, memory 32 GB<br>Server : k8smaster1/tensorcore<br>Sample : RNA-seq (SRR10989467)
-
-Steps/files created | Programs/tools | real | user | sys | overall<br>alignment rate
---- | --- | --- | --- |--- |---
-fastq|	trimmomatic |	4m42.106s|	3m53.541s	|2m27.418s
-SRR10989467.1.fastq	|Fastqc	|0m20.755s	|0m22.372s	|0m1.006s
-SRR10989467.2.fastq|	Fastqc	|0m20.729s	|0m22.270s	|0m1.048s
-SRR10989467	|hisat2			
-SRR10989467_1_trimmo_paired.fastq	|Fastqc	|0m23.978s	|0m22.327s	|0m1.506s
-SRR10989467_2_trimmo_paired.fastq	|Fastqc	|0m20.851s	|0m22.268s	|0m1.426s
-SRR10989467 trim	|hisat2	|6m38.094s|	35m50.135s	|1m58.589s
-SRR1089467.sam	|samtools|	3m58.645s|	3m30.381s	|0m11.326s
-SRR10989467_sorted.bam	|picard	|8m2.067s	|10m57.977s	|0m26.845s
-SRR10989467_sorted_rmdup.bam	|samtools flagstat	|0m15.298s	|0m14.280s	|0m0.790s
-SRR10989467_sorted_rmdup.bam|	samtools index	|0m15.346s	|0m14.733s|	0m0.506s
-SRR10989467_sorted_rmdup.bam|	stringtie	|45m12.169s	|46m15.334s	|1m12.169s
-genomeGenerate  	|STAR	|67m11.701s	|280m10.123s	|3m42.097s				
-SRR10989467 mapping| 	STAR	|2m55.012s|	12m42.618s|	0m31.139s
