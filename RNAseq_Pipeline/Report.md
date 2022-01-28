@@ -16,8 +16,7 @@ SRR10989467_sorted_rmdup.bam|	samtools flagstat	|0m15.076s|	0m14.172s|	0m0.802s
 SRR10989467_sorted_rmdup.bam|	samtools index|	0m15.911s	|0m15.405s	|0m0.417s
 SRR10989467_sorted_rmdup.bam|	stringtie|	40m46.360s	|41m50.743s|	0m15.878s
 genomeGenerate  |	STAR|	67m11.701s	|280m10.123s	|3m42.097s
-SRR10989467 mapping |	STAR|	2m55.012s|	12m42.618s|	0m31.139s
-SRR10989467 trim	|pbrun			
+SRR10989467 mapping |	STAR|	2m55.012s|	12m42.618s|	0m31.139s		
 
 ###### Processing : CPU XX, node X, memory XX GB<br>Server : Sanger17 (10.90.202.246)<br>Sample : RNA-seq (SRR10989467)
 
