@@ -32,12 +32,12 @@ Data used in this analysis was downloaded from the Sequence Read Archive (SRA) u
 
 ## Tools and programs used in this analysis
 - sratoolkit (2.8.2)
-- Trimmomatic (0.36)
-- FastQC (3.0)
+- Trimmomatic (0.39)
+- FastQC (0.11.9)
 - HiSAT2
-- Samtools
+- Samtools (1.9-4)
 - Picard (1.139)
-- Stringtie (1.3.5)
-- STAR
+- Stringtie (2.1.7)
+- STAR (2.7.9a)
 
 Data analyses were performed on Ubuntu 20.04.3 LTS
