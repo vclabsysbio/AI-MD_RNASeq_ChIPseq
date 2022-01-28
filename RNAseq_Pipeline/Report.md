@@ -2,7 +2,7 @@
 
 ###### Processing : CPU 10, node 1, memory 64 GB<br>Server : k8smaster1/omega<br>Sample : RNA-seq (SRR10989467)
 
-Steps/files created | Programs/tools | real | user | sys
+Steps/files created | Programs/Tools | real | user | sys
 --- | --- | --- | --- |--- 
 fastq | Trimmomatic | 4m54.646s | 4m6.433s | 2m25.941s
 SRR10989467.1.fastq|	Fastqc|	0m21.735s|	0m22.806s|	0m1.355s
@@ -20,7 +20,7 @@ SRR10989467 mapping |	STAR|	2m55.012s|	12m42.618s|	0m31.139s
 
 ###### Processing : CPU XX, node X, memory XX GB<br>Server : Sanger17 (10.90.202.246)<br>Sample : RNA-seq (SRR10989467)
 
-Steps/files created | Programs/tools | real | user | sys
+Steps/files created | Programs/Tools | real | user | sys
 --- | --- | --- | --- |--- 
 fastq|	trimmomatic 	|12m40.120s	|6m31.020s	|11m4.076s
 SRR10989467.1.fastq	|Fastqc	|0m41.084s	|0m41.764s	|0m2.824s
