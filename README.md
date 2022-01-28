@@ -17,14 +17,7 @@ Data used in this analysis was downloaded from the Sequence Read Archive (SRA) u
 
 
 
-## Packages used in this analysis
-
-#### R package
-R 3.6.0
-- XX
-- YY
-
-#### Tools and programs
+## Tools and programs used in this analysis
 - sratoolkit (2.8.2)
 - Trimmomatic (0.36)
 - FastQC (3.0)
