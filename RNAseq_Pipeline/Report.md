@@ -1,6 +1,6 @@
 ## Report of performance between GPU and CPU
 
-###### Processing : CPU 10, node 1, memory 64 GB<br>Server : k8smaster1/omega<br>Sample : RNA-seq (SRR10989467)
+###### Processing : MU-AI HPC (CPU 10, node 1, memory 64 GB)<br>Server : k8smaster1/omega (IP Address 10.134.1.9)<br>Sample : RNA-seq (SRR10989467)
 
 Steps/files created | Programs/Tools | real | user | sys
 --- | --- | --- | --- |--- 
