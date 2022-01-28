@@ -8,11 +8,11 @@ This repository contains scripts used for RNA-sequencing and ChIP-sequencing ana
 Data used in this analysis was downloaded from the Sequence Read Archive (SRA) under the accession number **SRR10989467** for RNA-seq analysis and **SRR__** for ChIP-seq analysis
 
 ## Information of CPU
-#### Processing : CPU XX, node X, memory XX GB<br>Server : Sanger17 (10.90.202.246)
-**CPU model/make :** Intel Core Processor (Broadwell, IBRS)
-**Socket(s) :** 39
-**CPU Core :** 1?
-**Thread per core :** 1?
+### Processing : CPU XX, node X, memory XX GB<br>Server : Sanger17 (10.90.202.246)
+**CPU model/make :** Intel Core Processor (Broadwell, IBRS)<br>
+**Socket(s) :** 39<br>
+**CPU Core :** 1?<br>
+**Thread per core :** 1?<br>
 **Total threads :** (CPU Core x Thread per core)
 
 
