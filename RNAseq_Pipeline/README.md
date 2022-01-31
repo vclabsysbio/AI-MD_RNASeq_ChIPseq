@@ -34,13 +34,14 @@ Input file :
 * `'your_data'_2_trimmo_paired.fastq`<br>
 
 Output file :
-* `'your_data'.sam` <br>
+* `'your_data'_sorted.sam`
+
 Directory : `'your_path/Reference_genome'`
 ```
 hisat2 -p 6 -q --no-mixed --no-discordant --dta -x 'your_path/Reference_genome' -1 'your_data'_1_trimmo_paired.fastq -2 'your_data'_2_trimmo_paired.fastq -S 'your_data'.sam
 ```
 
-#### Mapping (1): HISAT2
+#### Mapping (1): STAR
 ##### Building index
 ```
 wget https://hgdownload.soe.ucsc.edu/goldenPath/'your_reference'/bigZips/hg38.fa.gz
@@ -52,7 +53,7 @@ Input file :
 * `'your_data'_2_trimmo_paired.fastq`
 
 Output file :
-* `'your_data'.bam`
+* `'your_data'_sorted.bam`
 
 Directory : 
 * `'your_path/Reference_genome'` 
@@ -73,4 +74,14 @@ STAR --genomeDir /home/peerapat.kha/hg38STAR/ \
 --readFilesIn 'your_data'_1_trimmo_paired.fastq 'your_data'_2_trimmo_paired.fastq \
 --outFileNamePrefix sample_test/'your_data' \
 --outSAMtype BAM SortedByCoordinate
+```
+### XX : Samtools
+Input file : 
+* `'your_data'_sorted.bam`
+
+Output file :
+* `'your_data'.sam`
+
+```
+samtools sort -o 'your_data'_sorted.bam 'your_data'.sam
 ```
