@@ -21,7 +21,8 @@ Output file :
 * `'your_data'_1_trimmo_unpaired.fastq`
 * `'your_data'_2_trimmo_paired.fastq`
 * `'your_data'_2_trimmo_unpaired.fastq`
-* `trimmolog1.txt` for exporting report <br>
+* `trimmolog1.txt` for exporting report
+
 Directory : `'your path'/adapters/TruSeq3-PE-2.fa`
 ```
 trimmomatic PE -threads 6 -phred33 -trimlog trimmolog1.txt 'your_data'_1.fastq 'your_data'_2.fastq 'your_data'_1_trimmo_paired.fastq 'your_data'_1_trimmo_unpaired.fastq  'your_data'_2_trimmo_paired.fastq 'your_data'_2_trimmo_unpaired.fastq ILLUMINACLIP:'your path'/adapters/TruSeq3-PE-2.fa:2:30:10
