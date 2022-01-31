@@ -85,3 +85,32 @@ Output file :
 ```
 samtools sort -o 'your_data'_sorted.bam 'your_data'.sam
 ```
+### XX : Picard
+Input file : 
+* `'your_data'_sorted.bam`
+
+Output file :
+* `'your_data'_sorted_rmdup.bam`
+* `'your_data'_markdup_stderr_renamed_hisat_dta_nomixed.txt`
+* `dup.txt` for exporting report
+```
+picard MarkDuplicates INPUT='your_data'_sorted.bam OUTPUT='your_data'_sorted_rmdup.bam METRICS_FILE=dup.txt VALIDATION_STRINGENCY=LENIENT REMOVE_DUPLICATES=true > 'your_data'_markdup_stderr_renamed_hisat_dta_nomixed.txt
+```
+
+##X##
+### Trimming : Trimmomatic
+Input file : 
+* `'your_data'_1.fastq`<br>
+* `'your_data'_2.fastq`<br>
+
+Output file :
+* `'your_data'_1_trimmo_paired.fastq`
+* `'your_data'_1_trimmo_unpaired.fastq`
+* `'your_data'_2_trimmo_paired.fastq`
+* `'your_data'_2_trimmo_unpaired.fastq`
+* `trimmolog1.txt` for exporting report
+
+Directory : `'your path'/adapters/TruSeq3-PE-2.fa`
+```
+trimmomatic PE -threads 6 -phred33 -trimlog trimmolog1.txt 'your_data'_1.fastq 'your_data'_2.fastq 'your_data'_1_trimmo_paired.fastq 'your_data'_1_trimmo_unpaired.fastq  'your_data'_2_trimmo_paired.fastq 'your_data'_2_trimmo_unpaired.fastq ILLUMINACLIP:'your path'/adapters/TruSeq3-PE-2.fa:2:30:10
+```
