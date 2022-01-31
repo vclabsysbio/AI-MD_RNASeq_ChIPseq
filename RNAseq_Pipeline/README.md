@@ -41,7 +41,7 @@ Directory : `'your_path/Reference_genome'`
 hisat2 -p 6 -q --no-mixed --no-discordant --dta -x 'your_path/Reference_genome' -1 'your_data'_1_trimmo_paired.fastq -2 'your_data'_2_trimmo_paired.fastq -S 'your_data'.sam
 ```
 
-#### Mapping (1): STAR
+#### Mapping (2): STAR
 ##### Building index
 ```
 wget https://hgdownload.soe.ucsc.edu/goldenPath/'your_reference'/bigZips/hg38.fa.gz
