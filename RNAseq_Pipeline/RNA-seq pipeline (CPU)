@@ -4,24 +4,26 @@
 # SRR accession : SRR10989467
 
 ##############################################################################
-#Fastqc
+## All packages were installed by admin
+#Fastqc: quality checking
 fastqc SRR10989467_1.fastq 
 fastqc SRR10989467_2.fastq 
 
 fastqc SRR10989467_1_trimmo_paired.fastq
 fastqc SRR10989467_2_trimmo_paired.fastq
 
-#trimmomatic
+#trimmomatic: trimming adapters
 trimmomatic PE -threads 6 -phred33 -trimlog trimmolog1.txt SRR10989467_1.fastq SRR10989467_2.fastq SRR10989467_1_trimmo_paired.fastq SRR10989467_1_trimmo_unpaired.fastq SRR10989467_2_trimmo_paired.fastq SRR10989467_2_trimmo_unpaired.fastq ILLUMINACLIP:/home/peerapat.kha/adapters/TruSeq3-PE-2.fa:2:30:10
 
-#hisat2
+#hisat2: mapping
 hisat2 -p 6 -q --no-mixed --no-discordant --dta -x /home/shared_data_vclab_2/Peerapat_GPU/hg38_tran/genome_tran -1 SRR10989467_1_trimmo_paired.fastq -2 SRR10989467_2_trimmo_paired.fastq -S SRR1089467.sam
 
-#STAR
+### STAR: install
 #building index
 wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
 wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/genes/hg38.ncbiRefSeq.gtf.gz
 
+#STAR:genome generate
 STAR --runThreadN 6 \
 --runMode genomeGenerate \
 --genomeDir /home/peerapat.kha/hg38STAR/ \
@@ -29,25 +31,26 @@ STAR --runThreadN 6 \
 --sjdbGTFfile  /home/peerapat.kha/hg38STAR/hg38.ncbiRefSeq.gtf \
 --sjdbOverhang 99
 
+#STAR: mapping
 STAR --genomeDir /home/peerapat.kha/hg38STAR/ \
 --runThreadN 6 \
 --readFilesIn SRR10989467_1_trimmo_paired.fastq SRR10989467_2_trimmo_paired.fastq \
 --outFileNamePrefix sample_test/testshpc \
 --outSAMtype BAM SortedByCoordinate
 
-#samtools
+#samtools: sorting
 samtools sort -o SRR10989467_sorted.bam SRR1089467.sam
 
-#picard
+#picard: remove duplicate
 picard MarkDuplicates INPUT=SRR10989467_sorted.bam OUTPUT=SRR10989467_sorted_rmdup.bam METRICS_FILE=dup.txt VALIDATION_STRINGENCY=LENIENT REMOVE_DUPLICATES=true > markdup_stderr_renamed_hisat_dta_nomixed.txt
 
-#FLAGSTAT
+#samtools:FLAGSTAT
 samtools flagstat SRR10989467_sorted_rmdup.bam
 
-#Index
+#samtools: Indexing
 samtools index SRR10989467_sorted_rmdup.bam
 
-#stringtie
+#stringtie: estimate transcript levels
 stringtie SRR10989467_sorted_rmdup.bam -G /home/shared_data_vclab_2/Peerapat_GPU/hg38_tran/hg38_ucsc.annotated.gtf -p 6 -e -B -A SRR10989467_sorted_rmdup_bam.txt -o SRR10989467_sorted_rmdup.gtf
 
 
