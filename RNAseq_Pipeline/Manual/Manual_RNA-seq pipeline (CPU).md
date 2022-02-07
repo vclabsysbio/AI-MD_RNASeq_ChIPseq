@@ -44,8 +44,8 @@ hisat2 -p 6 -q --no-mixed --no-discordant --dta -x 'your_path/Reference_genome' 
 #### Mapping (2): STAR
 ##### Building index
 ```
-wget https://hgdownload.soe.ucsc.edu/goldenPath/'your_reference'/bigZips/hg38.fa.gz
-wget https://hgdownload.soe.ucsc.edu/goldenPath/'your_reference'/bigZips/genes/hg38.ncbiRefSeq.gtf.gz
+wget https://hgdownload.soe.ucsc.edu/goldenPath/'your_reference'.fa.gz
+wget https://hgdownload.soe.ucsc.edu/goldenPath/'your_reference'.ncbiRefSeq.gtf.gz
 ```
 ##### Mapping process
 Input file : 
