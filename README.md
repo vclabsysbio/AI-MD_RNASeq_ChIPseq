@@ -4,6 +4,9 @@ CPU-HPC project (2022)
 ## Description
 This repository contains scripts used for RNA-sequencing and ChIP-sequencing analysis and report of performaces when we analyse in GPU and HPC.
 
+- Scripts and manuals for RNA-seq analysis is deposited in [RNA-seq Manuals](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/tree/main/RNAseq_Pipeline/Manual) <br>
+- Scripts and manuals for ChIP-seq analysis is deposited in [ChIP-seq Manuals](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/tree/main/ChIP-seq_pipeline/Manual)
+
 ## Data
 Data used in this analysis was downloaded from the Sequence Read Archive (SRA) under the accession number **SRR10989467** for RNA-seq analysis and **SRR__** for ChIP-seq analysis
 
@@ -41,3 +44,10 @@ Data used in this analysis was downloaded from the Sequence Read Archive (SRA) u
 - STAR (2.7.9a and 2.7.1a)
 
 Data analyses were performed on Ubuntu 20.04.3 LTS
+
+
+
+
+
+
+
