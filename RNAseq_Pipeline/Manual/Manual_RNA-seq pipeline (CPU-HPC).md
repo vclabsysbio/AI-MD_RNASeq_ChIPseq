@@ -55,4 +55,4 @@ module load ghcr.io/autamus/stringtie/2.1.7/module
 module load quay.io/biocontainers/star/2.7.9a--h9ee0642_0/module
 ```
 ###  STEP 5 : RNA-seq analysis pipeline
-Visit https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/blob/main/RNAseq_Pipeline/Manual/Manual_RNA-seq%20pipeline%20(CPU).md
+The script follows the link [RNAseq_Pipeline/Manual/Manual_RNA-seq pipeline (CPU).md](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/blob/main/RNAseq_Pipeline/Manual/Manual_RNA-seq%20pipeline%20(CPU).md)
