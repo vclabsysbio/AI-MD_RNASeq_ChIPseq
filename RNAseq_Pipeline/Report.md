@@ -34,3 +34,5 @@ SRR10989467_sorted_rmdup.bam	|samtools flagstat	|0m33.883s
 SRR10989467_sorted_rmdup.bam	|samtools index	|0m26.817s
 SRR10989467_sorted_rmdup.bam	|stringtie	|14m19.681s
 
+### Comparing time used in different GPU
+![image](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/blob/main/RNAseq_Pipeline/Figures/No_GPU_time.png?raw=true)
