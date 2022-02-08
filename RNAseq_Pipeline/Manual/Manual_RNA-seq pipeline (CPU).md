@@ -10,7 +10,7 @@ Input file :
 fastqc 'your_data'_1.fastq 
 fastqc 'your_data'_2.fastq 
 ```
-### Trimming : Trimmomatic
+### STEP 2 : Trimming
 Input file : 
 * `'your_data'_1.fastq`<br>
 * `'your_data'_2.fastq`<br>
@@ -26,7 +26,7 @@ Directory : `'your path'/adapters/TruSeq3-PE-2.fa`
 ```ruby
 trimmomatic PE -threads 6 -phred33 -trimlog trimmolog1.txt 'your_data'_1.fastq 'your_data'_2.fastq 'your_data'_1_trimmo_paired.fastq 'your_data'_1_trimmo_unpaired.fastq  'your_data'_2_trimmo_paired.fastq 'your_data'_2_trimmo_unpaired.fastq ILLUMINACLIP:'your path'/adapters/TruSeq3-PE-2.fa:2:30:10
 ```
-### Mapping
+### STEP 3 : Mapping
 #### Mapping (1): HISAT2
 Input file : 
 * `'your_data'_1_trimmo_paired.fastq`<br>
@@ -74,7 +74,7 @@ STAR --genomeDir /home/peerapat.kha/hg38STAR/ \
 --outFileNamePrefix sample_test/'your_data' \
 --outSAMtype BAM SortedByCoordinate
 ```
-### Sorting : Samtools
+### STEP 4 : Sorting
 Input file : 
 * `'your_data'_sorted.bam`
 
@@ -84,7 +84,7 @@ Output file :
 ```ruby
 samtools sort -o 'your_data'_sorted.bam 'your_data'.sam
 ```
-### Duplicate removal : Picard
+### STEP 5 : Duplicate removal
 Input file : 
 * `'your_data'_sorted.bam`
 
@@ -96,7 +96,7 @@ Output file :
 picard MarkDuplicates INPUT='your_data'_sorted.bam OUTPUT='your_data'_sorted_rmdup.bam METRICS_FILE=dup.txt VALIDATION_STRINGENCY=LENIENT REMOVE_DUPLICATES=true > 'your_data'_markdup_stderr_renamed_hisat_dta_nomixed.txt
 ```
 
-### ?? : samtools FLAGSTAT
+### STEP 6 : ?? 
 Input file : 
 * `'your_data'_sorted_rmdup.bam`<br>
 
@@ -104,14 +104,14 @@ Input file :
 samtools flagstat 'your_data'_sorted_rmdup.bam
 
 ```
-### Indexing : samtools
+### STEP 7 : Indexing
 Input file : 
 * `'your_data'_sorted_rmdup.bam`<br>
 
 ```ruby
 samtools index 'your_data'_sorted_rmdup.bam
 ```
-### Transcription level estimation : Stringtie
+### STEP 8 :Transcription level estimation
 Input file : 
 * `'your_data'_sorted_rmdup.bam`<br>
 
