@@ -1,7 +1,7 @@
 # Manual
 ##### Description
 
-# Installation
+## Installation
 
 ### Quality checking : FastQC (For Pair-End RNA-seq dataset)<br>
 Input file : 
