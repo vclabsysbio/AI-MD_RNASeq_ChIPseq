@@ -50,7 +50,7 @@ samtools sort -o 'your_data'_sorted.bam 'your_data'.sam
 picard MarkDuplicates INPUT='your_data'_sorted.bam OUTPUT='your_data'_sorted_rmdup.bam METRICS_FILE=dup.txt VALIDATION_STRINGENCY=LENIENT REMOVE_DUPLICATES=true > 'your_data'_markdup_stderr_renamed_hisat_dta_nomixed.txt
 ```
 
-### STEP 6 : ?? 
+### STEP 6 :  Counting
 
 
 ```ruby
