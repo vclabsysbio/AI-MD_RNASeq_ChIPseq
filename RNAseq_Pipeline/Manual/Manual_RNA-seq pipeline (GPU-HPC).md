@@ -7,16 +7,16 @@ For the complete information about SBATCH: https://slurm.schedmd.com/sbatch.html
 
 | Argument | Description | Default
 |---|---|---|
-|`SBATCH --job-name=rna_fq2bamSRR` |           Job name		  |*default: script name or sbatch*|
-|`SBATCH --ntasks=4`      |              Number of tasks		 | *default: 1 task per node*
-|`SBATCH --cpus-per-task=10`|             Number of CPUs per task	 | *default: 1 CPU per task*
-|`SBATCH --mem=128gb `       |            Memory size requested	 | *default: 4gb*
-|`SBATCH --time=5:00:00 `     |         Time limit hrs:min:sec	 | *default: 01:00:00 (+1 hours of extra overtime limit)*
-|`SBATCH --output=my_job%j.log`|           Output file		 | *default: slurm-<jobid>.out*
-|`SBATCH --gres=gpu:3   `       |        Number of GPUs requested  |*default: none (0)*
-|`SBATCH --nodes=1   `           | Req min-max of nodes      |*default: 1-as many as possible to satisfy the job without delay*
-|`SBATCH --partition=batch	`      | Req specific partition   | *default: batch*
-|`SBATCH --export=ALL	`	  |    Pass the env var
+|`SBATCH --job-name` |           Job name		  |*default: script name or sbatch*|
+|`SBATCH --ntasks`      |              Number of tasks		 | *default: 1 task per node*
+|`SBATCH --cpus-per-task`|             Number of CPUs per task	 | *default: 1 CPU per task*
+|`SBATCH --mem `       |            Memory size requested	 | *default: 4gb*
+|`SBATCH --time `     |         Time limit hrs:min:sec	 | *default: 01:00:00 (+1 hours of extra overtime limit)*
+|`SBATCH --output`|           Output file		 | *default: slurm-<jobid>.out*
+|`SBATCH --gres   `       |        Number of GPUs requested  |*default: none (0)*
+|`SBATCH --nodes   `           | Req min-max of nodes      |*default: 1-as many as possible to satisfy the job without delay*
+|`SBATCH --partition	`      | Req specific partition   | *default: batch*
+|`SBATCH --export	`	  |    Pass the env var
 
 ### STEP 1 : STAR alignment + Coordinate Sorting and Mark Duplicates
 ```ruby
