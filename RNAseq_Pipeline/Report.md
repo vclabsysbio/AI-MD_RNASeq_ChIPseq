@@ -42,3 +42,6 @@ SRR10989467_sorted_rmdup.bam	|stringtie	|14m19.681s
 |2|3m0s|
 |3|2m33s|
 |4|2m32s|
+
+### Comparing performance among CPU246, CPU-HPC and GPU-HCP
+![image](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/blob/main/RNAseq_Pipeline/Figures/Run_CPU-GPU.png)
