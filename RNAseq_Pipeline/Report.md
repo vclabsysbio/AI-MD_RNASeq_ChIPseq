@@ -18,7 +18,7 @@ SRR10989467_sorted_rmdup.bam|	stringtie|	40m46.360s
 genomeGenerate  |	STAR|	67m11.701s
 SRR10989467 mapping |	STAR|	2m55.012s		
 
-###### Processing : CPU XX, node X, memory XX GB<br>Server : Sanger17 (10.90.202.246)<br>Sample : RNA-seq (SRR10989467)
+###### Processing : CPU Server : Sanger17 (10.90.202.246)<br>Sample : RNA-seq (SRR10989467)
 
 Steps/files created | Programs/Tools | real
 --- | --- | ---
