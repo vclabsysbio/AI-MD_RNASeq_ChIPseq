@@ -1,6 +1,6 @@
 # Manual
 ##### Description
-RNA-seq pipeline (CPU-HPC)
+RNA-seq pipeline (CPU-HPC)<br>
 The script follows the link [RNAseq_Pipeline/Manual/Manual_RNA-seq pipeline (CPU).md](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/blob/main/RNAseq_Pipeline/Manual/Manual_RNA-seq%20pipeline%20(CPU).md)
 
 ### STEP 1 : install shpc
