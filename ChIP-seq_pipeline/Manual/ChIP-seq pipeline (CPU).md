@@ -25,24 +25,24 @@ bwa index 'fasta of reference genome'
 ```ruby
 bwa mem -t thred -K 10000000 'fasta of reference genome' 'your_data'_1.fastq 'your_data'_2.fastq > 'your_data'.sam
 ```
-### STEP 4 : Sorting
+### STEP 3 : Sorting
 
 ```ruby
 samtools sort -o 'your_data'_sorted.bam 'your_data'.sam
 ```
-### STEP 5 : Indexing
+### STEP 4 : Indexing
 
 ```ruby
 samtools index 'your_data'_sorted.bam
 ```
 
-### STEP 6 :  Flagstat
+### STEP 5 :  Flagstat
 
 ```ruby
 samtools flagstat 'your_data'_sorted.bam
 
 ```
-### STEP 7 : Peak calling
+### STEP 6 : Peak calling
 
 ```ruby
 macs2 call peak -t test.bam -c control.bam -f format -g genome size -q q-value
