@@ -66,4 +66,10 @@ SRR18027089
 |4|13m28s|
 
 ### Comparing performance among CPU246, CPU-HPC and GPU-HCP
-![image](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/blob/main/RNAseq_Pipeline/Figures/Run_CPU-GPU.png)
+SRR18027086
+
+![image](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/blob/main/ChIP-seq_pipeline/Figures/Compare_SRR18027086.png)
+
+SRR18027089
+
+![image](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/blob/main/ChIP-seq_pipeline/Figures/Compare_SRR18027089.png)
