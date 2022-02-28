@@ -57,7 +57,7 @@ SRR18027086
 
 SRR18027089
 
-![image](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/blob/main/RNAseq_Pipeline/Figures/No_GPU_time.png?raw=true)
+![image](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/blob/main/ChIP-seq_pipeline/Figures/GPU_SRR18027089.png)
 |No. of GPU|Time(s)|
 |---|---|
 |1|38m58s|
