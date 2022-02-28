@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# The following template provides a comprehensive set of SBATCH parameters 
+# to give users better understanding of the cluster resources.
+# For the complete information about SBATCH:
+# https://slurm.schedmd.com/sbatch.html.
+
+#SBATCH --job-name=fq2bamSRR # Job name		  # default: script name or sbatch
+#SBATCH --ntasks=4               # Number of tasks		  # default: 1 task per node
+#SBATCH --cpus-per-task=10       # Number of CPUs per task	  # default: 1 CPU per task 
+#SBATCH --mem=128gb              # Memory size requested	  # default: 4gb
+#SBATCH --time=3:00:00           # Time limit hrs:min:sec	  # default: 01:00:00 (+1 hours of extra overtime limit) 
+#SBATCH --output=my_job%j.log    # Output file		  # default: slurm-<jobid>.out
+#SBATCH --gres=gpu:1             # Number of GPUs requested  # default: none (0)
+#SBATCH --nodes=1                # Req min-max of nodes      # default: 1-as many as possible to satisfy the job without delay
+#SBATCH --partition=batch	     # Req specific partition    # default: batch
+#SBATCH --export=ALL		     # Pass the env var
+
+export MODULEPATH=/shared/software/modules:$MODULEPATH
+module load parabricks/3.7.0-1.ampere
+
+pbrun fq2bam --ref /home/peerapat.kha/ChIP/hg38.fa \
+--in-fq /home/peerapat.kha/ChIP/SRR18027086_1.fastq /home/peerapat.kha/ChIP/SRR18027086_2.fastq  \
+--out-bam /home/peerapat.kha/ChIP/fq2bam/86mark_dups_gpu.bam \
+--tmp-dir /home/peerapat.kha/ChIP/fq2bam/myrun_SRR86
+
+
+pbrun fq2bam --ref /home/peerapat.kha/ChIP/hg38.fa \
+--in-fq /home/peerapat.kha/ChIP/SRR18027089_1.fastq /home/peerapat.kha/ChIP/SRR18027089_2.fastq  \
+--out-bam /home/peerapat.kha/ChIP/fq2bam/89mark_dups_gpu.bam \
+--tmp-dir /home/peerapat.kha/ChIP/fq2bam/myrun_SRR89
