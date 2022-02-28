@@ -46,6 +46,7 @@ SRR18027086_sorted.bam and SRR18027089_sorted.bam|	macs2|	20m7.530s
 
 ### Comparing time used in different GPU for ChIP-seq pipeline
 SRR18027086
+
 ![image](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/blob/main/RNAseq_Pipeline/Figures/No_GPU_time.png?raw=true)
 |No. of GPU|Time(s)|
 |---|---|
@@ -55,6 +56,7 @@ SRR18027086
 |4|8m56s|
 
 SRR18027089
+
 ![image](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/blob/main/RNAseq_Pipeline/Figures/No_GPU_time.png?raw=true)
 |No. of GPU|Time(s)|
 |---|---|
