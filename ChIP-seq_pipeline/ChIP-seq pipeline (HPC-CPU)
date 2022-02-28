@@ -1,0 +1,98 @@
+# Processing in : MU-AI HPC (Mahidol University)
+# Information : CPU + HPC (IP Address 10.134.1.9)
+# Analysis : ChIP-seq pipeline
+# SRR accession : SRR18027086 and SRR18027089
+
+### STEP 1 ###
+#install shpc
+git clone https://github.com/singularityhub/singularity-hpc
+shpc
+shpc show  ## show all registry you can download and install
+shpc list # show registry you have already downloaded 
+
+###  STEP 2 ###
+####install tools for ChIP-seq analysis###
+
+#Fastqc
+#Ref https://singularityhub.github.io/singularity-hpc/r/quay.io-biocontainers-fastqc/
+shpc install quay.io/biocontainers/fastqc
+
+#Bowtie2
+#Ref  https://singularityhub.github.io/singularity-hpc/r/biocontainers-bowtie2/
+shpc install biocontainers/bowtie2
+
+#Samtools
+#Ref https://singularityhub.github.io/singularity-hpc/r/biocontainers-samtools/
+shpc install biocontainers/samtools
+
+#genomeCoverageBed
+#Ref https://singularityhub.github.io/singularity-hpc/r/ghcr.io-autamus-bedtools2/
+shpc install ghcr.io/autamus/bedtools2
+
+#BWA 
+#Ref https://singularityhub.github.io/singularity-hpc/r/biocontainers-bwa/
+shpc install biocontainers/bwa
+
+#MACS2 from Docker 
+#Ref https://hub.docker.com/r/dceoy/macs2/
+singularity pull macs2.sif docker://docker.io/dceoy/macs2
+
+#SRA toolskit
+singularity pull sratoolskit.sif docker://docker.io/ncbi/sra-tools
+
+###  STEP 3 ###
+### export module directory ###
+module use ~/singularity-hpc/modules
+#module spider ## for module detial 
+
+### Load modules ###
+module load quay.io/biocontainers/fastqc/0.11.9--0/module
+module load biocontainers/samtools/v1.9-4-deb_cv1/module
+module load biocontainers/bowtie2/v2.4.1_cv1/module
+module load biocontainers/bwa/0.7.15/module
+module load ghcr.io/autamus/bedtools2/2.30.0/module
+
+###########  STEP 4 RNA-seq analysis pipeline for CPU-HPC ##########
+
+#fastq-dump 
+singularity exec sratoolskit.sif /usr/local/bin/fastq-dump --split-3 SRR18027086 #ChIP
+singularity exec sratoolskit.sif /usr/local/bin/fastq-dump --split-3 SRR18027089 #ChIP
+
+#Fastqc
+fastqc SRR18027086_1.fastq
+fastqc SRR18027086_2.fastq
+ 
+fastqc SRR18027089_1.fastq
+fastqc SRR18027089_2.fastq
+
+#Bowtie2
+bowtie2 -x /home/peerapat.kha/ChIP/GRCh38_noalt_as/GRCh38_noalt_as --phred33 -p 10 -1 SRR18027086_1.fastq -2 SRR18027086_2.fastq -S SRR18027086_ChIP.sam
+bowtie2 -x /home/peerapat.kha/ChIP/GRCh38_noalt_as/GRCh38_noalt_as --phred33 -p 10 -1 SRR18027089_1.fastq -2 SRR18027089_2.fastq -S SRR18027089_input.sam
+
+#BWA
+bwa index hg38.fa
+bwa mem -t 32 -K 10000000 hg38.fa SRR18027086_1.fastq SRR18027086_2.fastq > ChIPbwa.sam
+bwa mem -t 32 -K 10000000 hg38.fa SRR18027089_1.fastq SRR18027089_2.fastq > inputbwa.sam
+
+samtools sort -o ChIPbwa_sorted.bam ChIPbwa.sam
+samtools sort -o inputbwa_sorted.bam inputbwa.sam
+samtools flagstat ChIPbwa_sorted.bam
+samtools flagstat inputbwa_sorted.bam
+
+#samtools
+samtools sort -o SRR18027086_ChIP_sorted.bam SRR18027086_ChIP.sam
+samtools sort -o SRR18027089_input_sorted.bam SRR18027089_input.sam
+
+#Index
+samtools index SRR18027086_ChIP_sorted.bam
+samtools index SRR18027089_input_sorted.bam
+
+#FLAGSTAT
+samtools flagstat SRR18027086_ChIP_sorted.bam
+samtools flagstat SRR18027089_input_sorted.bam
+
+#Bedgraph
+genomeCoverageBed -split -bg -ibam SRR18027086_ChIP_sorted.bam -g /home/peerapat.kha/ChIP/hg38.chrom.sizes > SRR18027086_ChIP_sorted.Bedgraph
+
+#MACS2
+singularity exec macs2.sif /usr/local/bin/macs2 callpeak -t SRR18027086_ChIP_sorted.bam -c SRR18027089_input_sorted.bam -f BAM -g 3.3e+9 -q 1.00e-2 --outdir macs2
