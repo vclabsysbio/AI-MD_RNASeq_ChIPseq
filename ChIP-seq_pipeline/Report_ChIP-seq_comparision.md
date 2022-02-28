@@ -4,19 +4,24 @@
 
 Steps/files created | Programs/Tools | real
 --- | --- | --- |
-fastq | Trimmomatic | 4m54.646s
-SRR10989467.1.fastq|	Fastqc|	0m21.735s
-SRR10989467.2.fastq|	Fastqc|	0m21.272s
-SRR10989467_1_trimmo_paired.fastq|	Fastqc|	0m20.770s
-SRR10989467_2_trimmo_paired.fastq|	Fastqc|	0m20.797s
-SRR10989467 trim|	hisat2|	5m37.831s
-SRR1089467.sam|	samtools|	3m45.601s
-SRR10989467_sorted.bam|	picard|	7m46.290s
-SRR10989467_sorted_rmdup.bam|	samtools flagstat	|0m15.076s
-SRR10989467_sorted_rmdup.bam|	samtools index|	0m15.911s
-SRR10989467_sorted_rmdup.bam|	stringtie|	40m46.360s
-genomeGenerate  |	STAR|	67m11.701s
-SRR10989467 mapping |	STAR|	2m55.012s		
+
+SRR18027086_1|	Fastqc|	0m21.735s
+SRR18027086_2|	Fastqc|	0m21.272s
+SRR18027089_1|	Fastqc|	0m20.770s
+SRR18027089_2|	Fastqc|	0m20.797s
+SRR18027086|	bowtie2|	5m37.831s
+SRR18027089|	bowtie2|	5m37.831s
+hg38.fa | BWA index|	5m37.831s
+SRR18027086 |	BWA|	5m37.831s
+SRR18027089|	BWA|	5m37.831s
+SRR18027086.sam|	samtools|	3m45.601s
+SRR18027089.sam|	samtools|	3m45.601s
+SRR18027086_sorted.bam|	samtools flagstat	|0m15.076s
+SRR18027089_sorted.bam|	samtools flagstat	|0m15.076s
+SRR18027086_sorted.bam|	samtools index|	0m15.911s
+SSRR18027089_sorted.bam|	samtools index|	0m15.911s
+SRR18027086_sorted.bam|	Bedtools|	40m46.360s
+SRR18027086_sorted.bam and SRR18027089_sorted.bam|	macs2|	40m46.360s
 
 ###### Processing : CPU246 Server : Sanger17 (10.90.202.246)<br>Sample : ChIP-seq (SRR18027086 and SRR18027089)
 
@@ -35,13 +40,23 @@ SRR10989467_sorted_rmdup.bam	|samtools index	|0m26.817s
 SRR10989467_sorted_rmdup.bam	|stringtie	|14m19.681s
 
 ### Comparing time used in different GPU
+SRR18027086
 ![image](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/blob/main/RNAseq_Pipeline/Figures/No_GPU_time.png?raw=true)
 |No. of GPU|Time(s)|
 |---|---|
-|1|4m16s|
-|2|3m0s|
-|3|2m33s|
-|4|2m32s|
+|1|24m29s|
+|2|14m12s|
+|3|10m9s|
+|4|8m56s|
+
+SRR18027089
+![image](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/blob/main/RNAseq_Pipeline/Figures/No_GPU_time.png?raw=true)
+|No. of GPU|Time(s)|
+|---|---|
+|1|38m58s|
+|2|19m52s|
+|3|15m59s|
+|4|13m28s|
 
 ### Comparing performance among CPU246, CPU-HPC and GPU-HCP
 ![image](https://github.com/vclabsysbio/AI-MD_RNASeq_ChIPseq/blob/main/RNAseq_Pipeline/Figures/Run_CPU-GPU.png)
