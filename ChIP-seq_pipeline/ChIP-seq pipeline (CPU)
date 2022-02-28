@@ -1,0 +1,45 @@
+# Processing in : Sanger17
+# Information : CPU (IP Address 10.90.202.246)
+# Analysis : ChIP-seq pipeline
+# SRR accession : SRR18027086 and SRR18027089
+
+##############################################################################
+## All packages were installed by admin
+
+#fastq-dump: download Fastq
+fastq-dump --split-3 SRR18027086 #ChIP
+fastq-dump --split-3 SRR18027089 #Input
+
+#Fastqc: quality checking
+fastqc SRR18027086_1.fastq
+fastqc SRR18027086_2.fastq
+ 
+fastqc SRR18027089_1.fastq
+fastqc SRR18027089_2.fastq
+
+#Bowtie2: mapping
+bowtie2 -x /home/shared_data_vclab_2/Peerapat_GPU/GPU_ChIP/GRCh38_noalt_as/GRCh38_noalt_as --phred33 -p 10 -1 SRR18027086_1.fastq -2 SRR18027086_2.fastq -S SRR18027086_ChIP.sam
+bowtie2 -x /home/shared_data_vclab_2/Peerapat_GPU/GPU_ChIP/GRCh38_noalt_as/GRCh38_noalt_as --phred33 -p 10 -1 SRR18027089_1.fastq -2 SRR18027089_2.fastq -S SRR18027089_input.sam
+
+#BWA: mapping
+bwa index hg38.fa
+bwa mem -t 32 -K 10000000 hg38.fa SRR18027086_1.fastq SRR18027086_2.fastq > ChIPbwa.sam
+bwa mem -t 32 -K 10000000 hg38.fa SRR18027086_9.fastq SRR18027089_2.fastq > inputbwa.sam
+
+#samtools: covert to BAM and sorting
+samtools sort -o SRR18027086_ChIP_sorted.bam SRR18027086_ChIP.sam
+samtools sort -o SRR18027089_input_sorted.bam SRR18027089_input.sam
+
+#Index: indexing
+samtools index SRR18027086_ChIP_sorted.bam
+samtools index SRR18027089_input_sorted.bam
+
+#FLAGSTAT: Statistic of BAM
+samtools flagstat SRR18027086_ChIP_sorted.bam
+samtools flagstat SRR18027089_input_sorted.bam
+
+#Bedgraph: extract genome coverage
+genomeCoverageBed -split -bg -ibam SRR18027086_ChIP_sorted.bam -g /home/shared_data_vclab_2/Peerapat_GPU/GPU_ChIP/hg38.chrom.sizes > SRR18027086_ChIP_sorted.Bedgraph
+
+#MACS2: peak calling
+macs2 callpeak -t SRR18027086_ChIP_sorted.bam -c SRR18027089_input_sorted.bam -f BAM -g 3.3e+9 -q 1.00e-2 --outdir macs2
