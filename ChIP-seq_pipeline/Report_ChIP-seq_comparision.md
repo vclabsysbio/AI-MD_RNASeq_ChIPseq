@@ -4,7 +4,6 @@
 
 Steps/files created | Programs/Tools | real
 --- | --- | --- |
-
 SRR18027086_1|	Fastqc|	0m21.735s
 SRR18027086_2|	Fastqc|	0m21.272s
 SRR18027089_1|	Fastqc|	0m20.770s
